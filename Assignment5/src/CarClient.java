@@ -15,8 +15,6 @@ public class CarClient {
 			car.setMileage(240000);
 			System.out.println(car.print());
 
-			car.setPlate();
-
 			System.out.println(car.print());
 
 		} catch (MalformedURLException murle) {

@@ -1,6 +1,6 @@
 import java.rmi.RemoteException;
 @SuppressWarnings("serial")
-public class CarImpl extends java.rmi.server.UnicastRemoteObject implements Car {
+public class CarImpl extends java.rmi.server.UnicastRemoteObject implements Car, java.io.Serializable {
 	private String model;
 	private String color;
 	private double mileage;
@@ -26,8 +26,8 @@ public class CarImpl extends java.rmi.server.UnicastRemoteObject implements Car 
 	}
 
 	@Override
-	public void setPlate() {
-		this.plate = this.hashCode();
+	public void setPlate(int plate) {
+		this.plate = plate;
 	}
 
 	@Override
