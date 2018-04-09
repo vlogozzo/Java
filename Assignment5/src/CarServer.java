@@ -1,21 +1,26 @@
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
-public class CarServer {
-	
-	public static void registerPlate(Car c) throws RemoteException {
-		c.setPlate(c.hashCode());
-	}
-	
-	public static void main(String args[]) {		
+@SuppressWarnings("serial")
+public class CarServer implements java.rmi.Remote, java.io.Serializable {
+
+	public void registerPlate(Car c) {
 		try {
-			Car c = new CarImpl();
-			Naming.rebind("rmi://localhost/carService", c);
-			registerPlate(c);
+			c.setPlate(c.hashCode());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String args[]) {
+		try {
+			CarServer CS = new CarServer();
+			Naming.rebind("rmi://localhost/carService", CS);
+			
 			System.out.println("server start");
-			//c.setPlate();
 		} catch (Exception e) {
 			System.out.println(e);
-		} 
+		}
 	}
 }
